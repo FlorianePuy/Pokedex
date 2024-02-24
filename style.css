@@ -2,3 +2,40 @@
     margin: 0;
     padding: 0;
 }
+body{
+    background-image: url("Assets/zig-zag.svg");
+    font-family: "Rubik", sans-serif;
+    color: #282A35;
+}
+nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: 8vh;
+    padding:0 15px;
+    background-color: #282A35;
+}
+.logo-pokeball {
+    width: 40px;
+    height: 40px;
+    background-image: url("Assets/Poké_Ball_icon.svg");
+}
+.container {
+    display: flex;
+    padding: 35px;
+}
+img {
+    max-width: 7em;
+}
+.card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20vw;
+    height: 55vh;
+    padding: 6px;
+    border: solid 1px #282A35;
+    border-radius: 10px;
+    text-align: justify;
+    background: rgba(255,255,255,60%);
+}
