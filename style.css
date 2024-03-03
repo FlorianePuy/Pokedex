@@ -22,21 +22,60 @@ nav {
 }
 .container {
     display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
     padding: 35px;
 }
 img {
-    max-width: 7em;
+    width: 7em;
 }
 .card {
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: space-around;
     width: 20vw;
     min-width: 240px;
     height: 55vh;
     padding: 6px;
+    margin-bottom: 7vh;
     border: solid 1px #282A35;
     border-radius: 10px;
     text-align: justify;
     background: rgba(255,255,255,60%);
+}
+section{
+  display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+button {
+
+}
+.button {
+    display: flex;
+    margin: 0 auto;
+}
+a{
+    text-decoration: none;
+}
+
+.button{
+    display: flex;
+    margin: 0 auto;
+    border: 0;
+    outline: 0;
+    cursor: pointer;
+    color: white;
+    background-color: rgb(196, 156, 86);
+    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(196, 156, 86) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 500;
+    padding: 4px 8px;
+    min-height: 28px;
+    transition: background-color .24s,box-shadow .24s;
+}
+.button:hover {
+    box-shadow: rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(0 0 0 / 12%) 0px 1px 1px 0px, rgb(196, 156, 86) 0px 0px 0px 1px, rgb(0 0 0 / 0%) 0px 0px 0px 0px, rgb(60 66 87 / 8%) 0px 3px 9px 0px, rgb(60 66 87 / 8%) 0px 2px 5px 0px;
 }

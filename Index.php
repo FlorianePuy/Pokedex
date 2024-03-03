@@ -17,16 +17,31 @@
         <button type="submit">Rechercher</button>
         </form>
     </nav>
-    <div class="container">
-        <div class="card">
-            <img src="Assets/Salameche.png" alt="image de salamèche">
-            <h3 class="name">Salamèche</h3>
-            <p class="description">La flamme qui brûle au bout de sa queue indique l'humeur de ce Pokémon.
-                Elle vacille lorsque Salamèche est content. En revanche, lorsqu'il s'énerve, la flamme 
-                prend de l'importance et brûle plus ardemment.</p>
-            <p>Type :</p>
-            <p>Numéro :</p>
+    <?php
+    require 'PokemonsManager.php';
+    require 'Pokemon.php';
+    require 'Type.php';
+
+    $manager=New PokemonsManager();
+    $pokemons=$manager->getAll();
+    ?>
+    <section class="">
+        <div class="container">
+            <?php foreach ($pokemons as $pokemon): ?>
+            <div class="card">
+                <img src='<?php echo $pokemon->getUrl_image()?>' alt='image de <?php echo $pokemon->getName()?>'>
+                <h3 class="name"><?php echo $pokemon->getName()?></h3>
+                <p class="description"><?php echo $pokemon->getDescription()?></p>
+                <p class='<?php echo $pokemon->getType1()?>'>Type : <?php echo $pokemon->getType1()?></p>
+                <p>Numéro : #<?php echo $pokemon->getNumber()?></p>
+            </div>
+            <?php endforeach; ?>
         </div>
-    </div>
+        <a href="create.php">
+            <button class="button">Créer un Pokémon</button>
+        </a>
+    </section>
+    
+
 </body>
 </html>
