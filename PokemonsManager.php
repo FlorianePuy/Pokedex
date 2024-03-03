@@ -52,7 +52,17 @@ class PokemonsManager {
         return $pokemons;
     }
     public function getAllByType(string $input) {
-
+        $pokemons=[];
+        $req=$this->db->prepare("SELECT * FROM pokemon WHERE type1 LIKE :type or type2 LIKE :type ORDER BY number");
+        if ($input instanceof Type) {
+            $req->bindValue(":type", $input, PDO::PARAM_STR);
+            $datas = $req->fetchAll();
+            foreach ($datas as $data) {
+                $pokemon = new Pokemon($data);
+                $pokemons[] = $pokemon;
+            }
+        }
+            return $pokemons;
     }
     public function update() {
 
