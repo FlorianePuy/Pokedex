@@ -63,7 +63,8 @@ class PokemonsManager {
             return $pokemons;
     }
     public function update(Pokemon $pokemon) {
-        $req=$this->db->prepare("UPDATE pokemon SET number=:number, name=:name, description=:description,type1=:type1,type2=:type2,url_image=:url_image");
+        $req=$this->db->prepare("UPDATE pokemon SET number=:number, name=:name, description=:description,type1=:type1,type2=:type2,url_image=:url_image WHERE id=:old_id");
+        $req->bindValue(':old_id',$pokemon->getId(),PDO::PARAM_INT);
         $req->bindValue(':number',$pokemon->getNumber(),PDO::PARAM_INT);
         $req->bindValue(':name',$pokemon->getName(),PDO::PARAM_STR);
         $req->bindValue(':description',$pokemon->getDescription(),PDO::PARAM_STR);
@@ -72,7 +73,7 @@ class PokemonsManager {
         $req->bindValue(':url_image',$pokemon->getUrl_image(),PDO::PARAM_STR);
         $req->execute();
     }
-    public function delete(int $id) {
+    public function delete(int $id):void {
         $req=$this->db->prepare("DELETE FROM pokemon WHERE id=:id");
         $req->bindValue(':id',$id,PDO::PARAM_INT);
         $req->execute();

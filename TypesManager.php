@@ -59,7 +59,8 @@ class TypesManager {
         return $types;
     }
     public function update(type $type) {
-        $req=$this->db->prepare("UPDATE type SET name=:name, color=:color");
+        $req=$this->db->prepare("UPDATE type SET name=:name, color=:color WHERE id=:old_id");
+        $req->bindValue(':old_id',$type->getId(),PDO::PARAM_INT);
         $req->bindValue(':color',$type->getColor(),PDO::PARAM_STR);
         $req->bindValue(':name',$type->getName(),PDO::PARAM_STR);
         $req->execute();
