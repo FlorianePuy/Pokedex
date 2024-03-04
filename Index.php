@@ -10,8 +10,10 @@
 </head>
 <body>
     <nav>
-        <div class="logo-pokeball">
-        </div>
+        <a href="Index.php">
+            <div class="logo-pokeball">
+            </div>
+        </a>
         <form action="">
         <input id="search" name="search" type="search" placeholder="Recherche...">
         <button type="submit">Rechercher</button>
