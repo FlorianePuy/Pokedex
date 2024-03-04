@@ -23,13 +23,28 @@
 require 'PokemonsManager.php';
 require 'Pokemon.php';
 require 'Type.php';
+require 'TypesManager.php';
 
-$manager=New PokemonsManager();
-$pokemons=$manager->getAll();
+$PokemonManager = New PokemonsManager();
+$typeManager = New TypesManager();
+$types = $typeManager->getAll();
+
+if (!empty($_POST)){
+    $number=$_POST['number'];
+    $name=$_POST['name'];
+    $description=$_POST['description'];
+    $type1=$_POST['type1'];
+    if (!empty($_POST['type2'])){
+        $type2=$_POST['type2'];
+    }else{
+        $type2='';
+    }
+    $url_image=$_POST['url_image'];
+}
 ?>
 <section class="container">
     <fieldset class="container">
-        <form class="form">
+        <form class="form" method="post">
             <label for="number">Numéro : 
                 <input type="number" name="number" id="number" placeholder="25" min="1" max="151" required>
             </label>
@@ -40,19 +55,23 @@ $pokemons=$manager->getAll();
                 <textarea name="description" id="description" rows="6" cols="40"> description du pokemon...
                 </textarea>
             </label>
-            <!-- <label for="type1">Type :
-                <select>
-                   <option value="fire">Feu</option>
+          <label for="type1">Type :
+                <select required>
+                    <?php foreach ($types as $type): ?>
+                   <option value="<?= $type->getId(); ?>"><?= $type->getName();?></option>
+                    <?php endforeach ?>
                 </select>
             </label>
             <label for="type2">Type secondaire :
                 <select>
-                    <option value="ground">Sol</option>
+                    <?php foreach ($types as $type): ?>
+                        <option value="<?= $type->getId(); ?>"><?= $type->getName();?></option>
+                    <?php endforeach ?>
                 </select>
-            </label> -->
+            </label>
             <label for="url_image">Lien vers l'image :
-                <input type="url" name="url_image" id="url_image" placeholder="https://example.com" pattern="https://
-                .*" 
+                <input type="url" name="url_image"
+                id="url_image" placeholder="https://example.com" pattern="https://.*"
                        size="300" required />
             </label>  
             <input class="button" type="submit" name="submit" id="submit">
