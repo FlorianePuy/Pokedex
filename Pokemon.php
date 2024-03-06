@@ -1,13 +1,13 @@
 <?php
 
 class Pokemon {
-    private $id;
-    private $number;
-    private $name;
-    private $description;
+    private int $id;
+    private int $number;
+    private string $name;
+    private string $description;
     private $type1;
     private $type2;
-    private $url_image;
+    private string $url_image;
 
     public function getId() {
         return $this->id;

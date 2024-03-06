@@ -30,16 +30,26 @@ $typeManager = New TypesManager();
 $types = $typeManager->getAll();
 
 if (!empty($_POST)){
-    $number=$_POST['number'];
+    var_dump($_POST);
+    $number=intval($_POST['number']);
     $name=$_POST['name'];
     $description=$_POST['description'];
     $type1=$_POST['type1'];
     if (!empty($_POST['type2'])){
         $type2=$_POST['type2'];
     }else{
-        $type2='';
+        $type2=null;
     }
     $url_image=$_POST['url_image'];
+    $newPokemon = new Pokemon([
+            'number' => $number,
+            'name' => $name,
+            'description' => $description,
+            'type1' => $type1,
+            'type2' => $type2,
+            'url_image' => $url_image
+    ]);
+    $PokemonManager->create($newPokemon);
 }
 ?>
 <section class="container">
@@ -52,20 +62,21 @@ if (!empty($_POST)){
                 <input type="text" name="name" id="name" placeholder="Pikachu" required>
             </label>
             <label for="description">Description :
-                <textarea name="description" id="description" rows="6" cols="40"> description du pokemon...
+                <textarea name="description" id="description"
+                          rows="6" cols="40"> Description du pokemon...
                 </textarea>
             </label>
           <label for="type1">Type :
-                <select required>
+                <select name="type1" required>
                     <?php foreach ($types as $type): ?>
-                   <option value="<?= $type->getId(); ?>"><?= $type->getName();?></option>
+                   <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
                 </select>
             </label>
             <label for="type2">Type secondaire :
-                <select>
+                <select name="type2">
                     <?php foreach ($types as $type): ?>
-                        <option value="<?= $type->getId(); ?>"><?= $type->getName();?></option>
+                        <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
                 </select>
             </label>
