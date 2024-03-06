@@ -15,7 +15,7 @@
         </div>
     </a>
     <form action="">
-        <input id="search" name="search" type="search" placeholder="Recherche...">
+        <label for="search"></label><input id="search" name="search" type="search" placeholder="Recherche...">
         <button type="submit">Rechercher</button>
     </form>
 </nav>
@@ -54,6 +54,7 @@ if (!empty($_POST)){
 ?>
 <section class="container">
     <fieldset class="container">
+        <legend>Créer un nouveau Pokemon</legend>
         <form class="form" method="post">
             <label for="number">Numéro : 
                 <input type="number" name="number" id="number" placeholder="25" min="1" max="151" required>
@@ -62,8 +63,7 @@ if (!empty($_POST)){
                 <input type="text" name="name" id="name" placeholder="Pikachu" required>
             </label>
             <label for="description">Description :
-                <textarea name="description" id="description"
-                          rows="6" cols="40"> Description du pokemon...
+                <textarea name="description" id="description" rows="6" cols="40" placeholder="Description du pokemon...">
                 </textarea>
             </label>
           <label for="type1">Type :
