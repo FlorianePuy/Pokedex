@@ -50,6 +50,7 @@ if (!empty($_POST)){
             'url_image' => $url_image
     ]);
     $PokemonManager->create($newPokemon);
+    header("Location: Index.php");
 }
 ?>
 <section class="container">
@@ -63,8 +64,8 @@ if (!empty($_POST)){
                 <input type="text" name="name" id="name" placeholder="Pikachu" required>
             </label>
             <label for="description">Description :
-                <textarea name="description" id="description" rows="6" cols="40" placeholder="Description du pokemon...">
-                </textarea>
+                <textarea placeholder=" Description du Pokémon" name="description" id="description" rows="6"
+                          cols="40"></textarea>
             </label>
           <label for="type1">Type :
                 <select name="type1" required>

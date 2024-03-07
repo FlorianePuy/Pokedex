@@ -36,6 +36,9 @@
                 <p class="description"><?php echo $pokemon->getDescription()?></p>
                 <p class='<?php echo $pokemon->getType1()?>'>Type : <?php echo $pokemon->getType1()?></p>
                 <p>Numéro : #<?php echo $pokemon->getNumber()?></p>
+                <a href="delete.php?id=<?php echo $pokemon->getId();?>">
+                    <button class="button">Supprimer</button>
+                </a>
             </div>
             <?php endforeach; ?>
         </div>
