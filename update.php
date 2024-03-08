@@ -28,9 +28,10 @@ require 'TypesManager.php';
 $PokemonManager = New PokemonsManager();
 $typeManager = New TypesManager();
 $types = $typeManager->getAll();
+$oldPokemon = new Pokemon($PokemonManager->get(intval($_GET['id'])));
+var_dump($oldPokemon);
 
 if (!empty($_POST)){
-    var_dump($_POST);
     $number=intval($_POST['number']);
     $name=$_POST['name'];
     $description=$_POST['description'];
@@ -49,7 +50,7 @@ if (!empty($_POST)){
         'type2' => $type2,
         'url_image' => $url_image
     ]);
-    $PokemonManager->create($newPokemon);
+    //$PokemonManager->update($newPokemon,$oldPokemonId);
     header("Location: Index.php");
 }
 ?>

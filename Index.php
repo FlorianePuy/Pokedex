@@ -23,7 +23,9 @@
     require 'PokemonsManager.php';
     require 'Pokemon.php';
     require 'Type.php';
+    require 'TypesManager.php';
 
+    $typeManager=new TypesManager();
     $manager=New PokemonsManager();
     $pokemons=$manager->getAll();
     ?>
@@ -34,10 +36,16 @@
                 <img src='<?php echo $pokemon->getUrl_image()?>' alt='image de <?php echo $pokemon->getName()?>'>
                 <h3 class="name"><?php echo $pokemon->getName()?></h3>
                 <p class="description"><?php echo $pokemon->getDescription()?></p>
-                <p class='<?php echo $pokemon->getType1()?>'>Type : <?php echo $pokemon->getType1()?></p>
+                <?php
+                    $type=$typeManager->get($pokemon->getType1());
+                ?>
+                <p class='<?php echo $pokemon->getType1()?>'>Type : <?php echo $type->getName()?></p>
                 <p>Numéro : #<?php echo $pokemon->getNumber()?></p>
                 <a href="delete.php?id=<?php echo $pokemon->getId();?>">
-                    <button class="button">Supprimer</button>
+                    <button class="button" id="supprimer">Supprimer</button>
+                </a>
+                <a href="update.php?id=<?php echo $pokemon->getId();?>">
+                    <button class="button">Modifier</button>
                 </a>
             </div>
             <?php endforeach; ?>

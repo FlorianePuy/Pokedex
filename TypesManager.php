@@ -22,8 +22,9 @@ class TypesManager {
     }
     public function get($id):type{
         $req=$this->db->prepare("SELECT * FROM type WHERE id=:id");
-        $req->bindValue(":id",$id,PDO::PARAM_INT);
-        $data=$req->fetch();
+        $req->bindValue(':id',$id,PDO::PARAM_INT);
+        $req->execute();
+        $data=$req->fetch(PDO::FETCH_ASSOC);
         return new type($data);
     }
     public function getAll():array {
@@ -40,6 +41,7 @@ class TypesManager {
         $types=[];
         $req=$this->db->prepare("SELECT * FROM type WHERE name LIKE :name ORDER BY name");
         $req->bindValue(":name",$input,PDO::PARAM_STR);
+        $req->execute();
         $datas=$req->fetchAll();
         foreach ($datas as $data){
             $type=new type($data);
@@ -50,7 +52,8 @@ class TypesManager {
     public function getAllByType(string $input) {
         $types=[];
         $req=$this->db->prepare("SELECT * FROM type WHERE name LIKE :name ORDER BY name");
-        $req->bindValue(":type", $input, PDO::PARAM_STR);
+        $req->bindValue(":name", $input, PDO::PARAM_STR);
+        $req->execute();
         $datas = $req->fetchAll();
         foreach ($datas as $data) {
             $type = new type($data);

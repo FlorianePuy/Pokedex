@@ -30,7 +30,6 @@ $typeManager = New TypesManager();
 $types = $typeManager->getAll();
 
 if (!empty($_POST)){
-    var_dump($_POST);
     $number=intval($_POST['number']);
     $name=$_POST['name'];
     $description=$_POST['description'];
@@ -79,6 +78,7 @@ if (!empty($_POST)){
                     <?php foreach ($types as $type): ?>
                         <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
+                    <option value="">--</option>
                 </select>
             </label>
             <label for="url_image">Lien vers l'image :

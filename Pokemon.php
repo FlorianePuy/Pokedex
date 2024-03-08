@@ -102,7 +102,7 @@ class Pokemon {
     public function setUrl_image($url_image) {
         $this->url_image = $url_image;
     }
-    public function hydrate($data) {
+    public function hydrate($data): void {
         foreach ($data as $key => $value){
             $method = "set".ucfirst($key);
             if (method_exists($this,$method)){

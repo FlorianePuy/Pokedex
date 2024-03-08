@@ -27,6 +27,7 @@ class PokemonsManager {
     public function get($id):Pokemon{
         $req=$this->db->prepare("SELECT * FROM pokemon WHERE id=:id");
         $req->bindValue(":id",$id,PDO::PARAM_INT);
+        $req->execute();
         $data=$req->fetch();
         return new Pokemon($data);
     }
@@ -44,6 +45,7 @@ class PokemonsManager {
         $pokemons=[];
         $req=$this->db->prepare("SELECT * FROM pokemon WHERE name LIKE :name ORDER BY number");
         $req->bindValue(":name",$input,PDO::PARAM_STR);
+        $req->execute();
         $datas=$req->fetchAll();
         foreach ($datas as $data){
             $pokemon=new Pokemon($data);
@@ -55,6 +57,7 @@ class PokemonsManager {
         $pokemons=[];
         $req=$this->db->prepare("SELECT * FROM pokemon WHERE type1 LIKE :type or type2 LIKE :type ORDER BY number");
             $req->bindValue(":type", $input, PDO::PARAM_STR);
+            $req->execute();
             $datas = $req->fetchAll();
             foreach ($datas as $data) {
                 $pokemon = new Pokemon($data);
