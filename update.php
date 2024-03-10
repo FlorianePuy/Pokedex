@@ -29,27 +29,39 @@ $PokemonManager = New PokemonsManager();
 $typeManager = New TypesManager();
 $types = $typeManager->getAll();
 $oldPokemon = new Pokemon($PokemonManager->get(intval($_GET['id'])));
-var_dump($oldPokemon);
-
-if (!empty($_POST)){
-    $number=intval($_POST['number']);
-    $name=$_POST['name'];
-    $description=$_POST['description'];
-    $type1=$_POST['type1'];
-    if (!empty($_POST['type2'])){
-        $type2=$_POST['type2'];
-    }else{
-        $type2=null;
+try {
+    if (!empty($_POST)){
+        $number=intval($_POST['number']);
+        if ($number>151 || $number<0) {
+            throw new Exception('Le numéro du pokemon n\'est pas bon');
+        }
+        $name=htmlspecialchars($_POST['name']);
+        if (strlen($name)>50 || strlen($name)<3) {
+            throw new Exception('Le nom du pokemon est trop court ou trop long');
+        }
+        $description=htmlspecialchars($_POST['description']);
+        if (strlen($description)>10000) {
+            throw new Exception('Votre Description est trop longue');
+        }
+        $type1=$_POST['type1'];
+        if (!empty($_POST['type2'])){
+            $type2=$_POST['type2'];
+        }else{
+            $type2=null;
+        }
+        $url_image=$_POST['url_image'];
+        $oldPokemon->setNumber($number);
+        $oldPokemon->setName($name);
+        $oldPokemon->setDescription($description);
+        $oldPokemon->setType1($type1);
+        $oldPokemon->setType2($type2);
+        $PokemonManager->update($oldPokemon);
+        header("Location: Index.php");
     }
-    $url_image=$_POST['url_image'];
-    $oldPokemon->setNumber($number);
-    $oldPokemon->setName($name);
-    $oldPokemon->setDescription($description);
-    $oldPokemon->setType1($type1);
-    $oldPokemon->setType2($type2);
-    $PokemonManager->update($oldPokemon);
-    header("Location: Index.php");
+} catch ( Exception $exception){
+    echo "Erreur : ".$exception->getMessage();
 }
+
 ?>
 <section class="container">
     <fieldset class="container">
