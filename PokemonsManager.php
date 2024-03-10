@@ -65,7 +65,7 @@ class PokemonsManager {
         }
             return $pokemons;
     }
-    public function update(Pokemon $pokemon) {
+    public function update(Pokemon $pokemon):void {
         $req=$this->db->prepare("UPDATE pokemon SET number=:number, name=:name, description=:description,type1=:type1,type2=:type2,url_image=:url_image WHERE id=:old_id");
         $req->bindValue(':old_id',$pokemon->getId(),PDO::PARAM_INT);
         $req->bindValue(':number',$pokemon->getNumber(),PDO::PARAM_INT);

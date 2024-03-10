@@ -42,15 +42,12 @@ if (!empty($_POST)){
         $type2=null;
     }
     $url_image=$_POST['url_image'];
-    $newPokemon = new Pokemon([
-        'number' => $number,
-        'name' => $name,
-        'description' => $description,
-        'type1' => $type1,
-        'type2' => $type2,
-        'url_image' => $url_image
-    ]);
-    //$PokemonManager->update($newPokemon,$oldPokemonId);
+    $oldPokemon->setNumber($number);
+    $oldPokemon->setName($name);
+    $oldPokemon->setDescription($description);
+    $oldPokemon->setType1($type1);
+    $oldPokemon->setType2($type2);
+    $PokemonManager->update($oldPokemon);
     header("Location: Index.php");
 }
 ?>
@@ -59,35 +56,56 @@ if (!empty($_POST)){
         <legend>Créer un nouveau Pokemon</legend>
         <form class="form" method="post">
             <label for="number">Numéro :
-                <input type="number" name="number" id="number" placeholder="25" min="1" max="151" required>
+                <input value="<?php echo $oldPokemon->getId()?>" type="number" name="number" id="number" placeholder="25"
+                       min="1"
+                       max="151" required>
             </label>
             <label for="name">Nom :
-                <input type="text" name="name" id="name" placeholder="Pikachu" required>
+                <input value="<?php echo $oldPokemon->getName()?>" type="text" name="name" id="name"
+                       placeholder="Pikachu" required>
             </label>
             <label for="description">Description :
                 <textarea placeholder=" Description du Pokémon" name="description" id="description" rows="6"
-                          cols="40"></textarea>
+                          cols="40"><?php echo $oldPokemon->getDescription()?></textarea>
             </label>
             <label for="type1">Type :
                 <select name="type1" required>
                     <?php foreach ($types as $type): ?>
-                        <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
+                        <option <?php
+                        if ($type->getId()===$oldPokemon->getType1()) {
+                            echo "selected";
+                        }
+                            ?>
+                                value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
                 </select>
             </label>
             <label for="type2">Type secondaire :
                 <select name="type2">
                     <?php foreach ($types as $type): ?>
-                        <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
+                        <option <?php
+                        if ($type->getId()===$oldPokemon->getType2()) {
+                            echo "selected";
+                        }
+                        ?>
+                                value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
+                    <option
+                            <?php
+                            if ($oldPokemon->getType2()===null){
+                                echo "selected";
+                            }
+                            ?>
+                            value="">--</option>
                 </select>
             </label>
             <label for="url_image">Lien vers l'image :
-                <input type="url" name="url_image"
+                <input type="url" name="url_image" value="<?php echo $oldPokemon->getUrl_image()?>"
                        id="url_image" placeholder="https://example.com" pattern="https://.*"
                        size="300" required />
             </label>
             <input class="button" type="submit" name="submit" id="submit">
+            <img src="<?php echo $oldPokemon->getUrl_image()?>" alt="Image du pokemon avant modification">
         </form>
     </fieldset>
 </section>

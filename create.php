@@ -71,6 +71,7 @@ if (!empty($_POST)){
                     <?php foreach ($types as $type): ?>
                    <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
+                    <option selected value="">--</option>
                 </select>
             </label>
             <label for="type2">Type secondaire :
@@ -78,7 +79,7 @@ if (!empty($_POST)){
                     <?php foreach ($types as $type): ?>
                         <option value="<?php echo $type->getId(); ?>"><?= $type->getName();?></option>
                     <?php endforeach ?>
-                    <option value="">--</option>
+                    <option selected value="">--</option>
                 </select>
             </label>
             <label for="url_image">Lien vers l'image :

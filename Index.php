@@ -34,13 +34,12 @@
             <?php foreach ($pokemons as $pokemon): ?>
             <div class="card">
                 <img src='<?php echo $pokemon->getUrl_image()?>' alt='image de <?php echo $pokemon->getName()?>'>
-                <h3 class="name"><?php echo $pokemon->getName()?></h3>
+                <h3 class="name"><?php echo "#".$pokemon->getNumber()." ".$pokemon->getName()?></h3>
                 <p class="description"><?php echo $pokemon->getDescription()?></p>
                 <?php
                     $type=$typeManager->get($pokemon->getType1());
                 ?>
                 <p class='<?php echo $pokemon->getType1()?>'>Type : <?php echo $type->getName()?></p>
-                <p>Numéro : #<?php echo $pokemon->getNumber()?></p>
                 <a href="delete.php?id=<?php echo $pokemon->getId();?>">
                     <button class="button" id="supprimer">Supprimer</button>
                 </a>
