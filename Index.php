@@ -53,7 +53,6 @@
             <button class="button">Créer un Pokémon</button>
         </a>
     </section>
-    
-
+<?php include 'Layout/footer.php'; ?>
 </body>
 </html>
