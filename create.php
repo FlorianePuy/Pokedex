@@ -91,5 +91,6 @@ if (!empty($_POST)){
         </form>
     </fieldset>
 </section>
+<?php include 'Layout/footer.php'; ?>
 </body>
 </html>

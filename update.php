@@ -65,7 +65,7 @@ try {
 ?>
 <section class="container">
     <fieldset class="container">
-        <legend>Créer un nouveau Pokemon</legend>
+        <legend>Modifier un Pokemon</legend>
         <form class="form" method="post">
             <label for="number">Numéro :
                 <input value="<?php echo $oldPokemon->getId()?>" type="number" name="number" id="number" placeholder="25"
@@ -122,5 +122,6 @@ try {
     </fieldset>
 </section>
 </body>
+<?php include 'Layout/footer.php'; ?>
 </html>
 

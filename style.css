@@ -45,19 +45,16 @@ img {
     border: solid 1px #282A35;
     border-radius: 10px;
     text-align: justify;
-    background: rgba(255,255,255,60%);
+    background: rgba(255,255,255,85%);
 }
 section{
   display: flex;
     flex-direction: column;
     flex-wrap: wrap;
+    padding-bottom: 10vh;
 }
 button {
 
-}
-.button {
-    display: flex;
-    margin: 0 auto;
 }
 a{
     text-decoration: none;
@@ -91,4 +88,16 @@ a{
 }
 #supprimer {
     background-color: maroon;
+}
+fieldset {
+    height: 57vh;
+}
+footer {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: end;
+    background-color: #282A35;
+    color: white;
+    height: 10vh;
+    padding-bottom: 1vh;
 }
